@@ -5,6 +5,8 @@ require("dotenv").config();
 import express, { Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 
+import supabase from "../supabaseInstance";
+
 //cors
 const cors = require("cors");
 
@@ -33,7 +35,24 @@ app.use(express.json());
 app.get("/", ( request: Request, response: Response, next: NextFunction) => {
     response.json({ message: "Welcome to the server"});
   });
+
+  //Get all Posts
+  const getAllPosts = async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) => {
+    try {
+        const res = await supabase.get("/post");
+        
+        response.json(res.data);
+    } catch (error){
+        next(error);
+    }
+  };
   
+  app.get("/post", getAllPosts);
+
   
   //error handling
   //Generic error handling
