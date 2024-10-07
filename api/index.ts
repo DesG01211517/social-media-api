@@ -73,15 +73,15 @@ app.get("/", ( request: Request, response: Response, next: NextFunction) => {
   
   app.get("/post/:id/comment", getAllComments);
 
-//Get likes ID
+//Get likes by ID
   const getLikesByID = async (
     request: Request,
     response: Response,
     next: NextFunction
   ) => {
     try {
-        const likeID = request.params.id;
-        const res = await supabase.get(`/like?id=eq.${postID}`);
+        const likeId = request.params.id;
+        const res = await supabase.get(`post?id=eq.${likeId}`);
         
         response.json(res.data);
     } catch (error){
