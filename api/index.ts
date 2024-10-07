@@ -36,7 +36,7 @@ app.get("/", ( request: Request, response: Response, next: NextFunction) => {
     response.json({ message: "Welcome to the server"});
   });
 
-  //Get all Posts
+//Get all Posts
   const getAllPosts = async (
     request: Request,
     response: Response,
@@ -50,11 +50,12 @@ app.get("/", ( request: Request, response: Response, next: NextFunction) => {
         next(error);
     }
   };
+  
   app.get("/post", getAllPosts);
 
   
   
-  //Get all comments by Post ID
+//Get all comments by Post ID
   const getAllComments = async (
     request: Request,
     response: Response,
@@ -71,6 +72,26 @@ app.get("/", ( request: Request, response: Response, next: NextFunction) => {
   };
   
   app.get("/post/:id/comment", getAllComments);
+
+//Get likes ID
+  const getLikesByID = async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) => {
+    try {
+        const likeID = request.params.id;
+        const res = await supabase.get(`/like?id=eq.${postID}`);
+        
+        response.json(res.data);
+    } catch (error){
+        next(error);
+    }
+  };
+  
+  app.get("/post/:id/like", getLikesByID);
+
+
 
   
   //error handling
