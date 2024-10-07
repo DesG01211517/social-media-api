@@ -28,9 +28,8 @@ app.use(cors(corsOptions));
 //Using JSON middleware to parse bodies
 app.use(express.json());
 
-//defining routes
+// Routes
 //Home Route
-
 app.get("/", ( request: Request, response: Response, next: NextFunction) => {
     response.json({ message: "Welcome to the server"});
   });
@@ -61,3 +60,4 @@ app.get("/", ( request: Request, response: Response, next: NextFunction) => {
   
   //export app for testing
   module.exports = app;
+ 
