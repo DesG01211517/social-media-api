@@ -7,7 +7,7 @@ const instance = axios.create({
   timeout: 2000,
   headers: {
     apikey: process.env.SUPABASE_KEY,
-    Authorization: "Bearer" + process.env.SUPABASE_KEY,
+    Authorization: "Bearer " + process.env.SUPABASE_KEY,
   },
 });
 
