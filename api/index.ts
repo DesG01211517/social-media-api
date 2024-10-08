@@ -13,6 +13,11 @@ const cors = require("cors");
 //Import Axios
 const axios = require("axios");
 
+//Import routes
+import { addPost, getAllPosts } from "./routes/post";
+import { getAllComments } from "./routes/comment";
+
+
 //Express application
 const app = express();
 
@@ -36,42 +41,11 @@ app.get("/", ( request: Request, response: Response, next: NextFunction) => {
     response.json({ message: "Welcome to the server"});
   });
 
-//Get all Posts
-  const getAllPosts = async (
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ) => {
-    try {
-        const res = await supabase.get("/post");
-        
-        response.json(res.data);
-    } catch (error){
-        next(error);
-    }
-  };
+   app.post("/post", addPost );
   
-  app.get("/post", getAllPosts);
-
+   app.get("/post", getAllPosts);
   
-  
-//Get all comments by Post ID
-  const getAllComments = async (
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ) => {
-    try {
-        const postID = request.params.id;
-        const res = await supabase.get(`/comment?id=eq.${postID}`);
-        
-        response.json(res.data);
-    } catch (error){
-        next(error);
-    }
-  };
-  
-  app.get("/post/:id/comment", getAllComments);
+   app.get("/post/:id/comment", getAllComments);
 
 //Get likes by ID
   const getLikeById = async (
