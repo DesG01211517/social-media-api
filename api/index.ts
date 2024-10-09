@@ -16,7 +16,7 @@ const axios = require("axios");
 //Import routes
 import { addPost, getAllPosts } from "./routes/post";
 import { getAllComments } from "./routes/comment";
-import { getLikeById } from "./routes/postlike";
+import { getLikeById } from "./routes/postLike";
 
 
 //Express application
