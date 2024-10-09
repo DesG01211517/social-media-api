@@ -10,7 +10,7 @@ const getLikeById = async (
     try {
         const postId = request.params.id;
         const { data } = await supabase.get(
-            `/PostLike?PostId=eq.${postId}`);
+            `/postLike?PostId=eq.${postId}`);
         if (!data || data.length === 0) {
              response.status(404).json({ message: "No Likes Yet" });
         }

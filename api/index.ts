@@ -16,6 +16,7 @@ const axios = require("axios");
 //Import routes
 import { addPost, getAllPosts } from "./routes/post";
 import { getAllComments } from "./routes/comment";
+import { getLikeById } from "./routes/postlike";
 
 
 //Express application
@@ -46,27 +47,8 @@ app.get("/", ( request: Request, response: Response, next: NextFunction) => {
    app.get("/post", getAllPosts);
   
    app.get("/post/:id/comment", getAllComments);
-
-//Get likes by ID
-  const getLikeById = async (
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ): Promise<void> => {
-    try {
-        const postId = request.params.id;
-        const { data } = await supabase.get(
-            `/PostLike?PostId=eq.${postId}`);
-        if (!data || data.length === 0) {
-             response.status(404).json({ message: "No Likes Yet" });
-        }
-         response.status(200).json(data);
-    } catch (error){
-        next(error);
-    }
-  };
   
-  app.get("/postLike/:id/post" , getLikeById);
+   app.get("/postlike/:id/comment" , getLikeById);
 
 
 
