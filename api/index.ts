@@ -3,7 +3,6 @@ require("dotenv").config();
 
 //Import express
 import express, { Request, Response, NextFunction } from "express";
-import dotenv from "dotenv";
 
 import supabase from "../supabaseInstance";
 
@@ -26,9 +25,10 @@ const app = express();
 const PORT = process.env.PORT;
 
 const corsOptions = {
-  origin: process.env.SNACKS_CLIENT,
+  origin: process.env.CLIENT_URL,
   optionsSuccessStatus: 200,
 };
+console.log(process.env.CLIENT_URL);
 
 //Using CORS
 app.use(cors(corsOptions));
