@@ -27,7 +27,7 @@ import supabase from "../../supabaseInstance";
     next: NextFunction
     ) => {
     try {
-        const res = await supabase.get("/post");
+        const res = await supabase.get('post?select=*,comments:comment(*),likes:postlike(*)');
         
         response.json(res.data);
     } catch (error){
