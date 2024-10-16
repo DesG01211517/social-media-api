@@ -8,7 +8,7 @@ const getAllComments = async (
   ) => {
     try {
         const postID = request.params.id;
-        const res = await supabase.get(`/comment?id=eq.${postID}`);
+        const res = await supabase.get("/post?id=eq,comments:comment(*)");
         
         response.json(res.data);
     } catch (error){
