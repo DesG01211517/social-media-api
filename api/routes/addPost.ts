@@ -21,7 +21,7 @@ const addPost = async (request: Request, response: Response, next: NextFunction)
   }
 
   if (like) {
-    await supabase.post("/post/:id/postLike", {
+    await supabase.post("/post/:id/postlike", {
       PostID: postId,
       CommentID: null, 
     });
