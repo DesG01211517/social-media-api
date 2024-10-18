@@ -14,9 +14,9 @@ const axios = require("axios");
 
 //Import routes
 import { getAllPosts } from "./routes/post";
-import { getAllComments } from "./routes/comment";
+import  getAllComments  from "./routes/comment";
 import { addPost } from "./routes/addPost";
-
+import  addComment  from "./routes/addComment";
 
 //Express application
 const app = express();
@@ -47,14 +47,10 @@ app.get("/", ( request: Request, response: Response, next: NextFunction) => {
    app.get("/post", getAllPosts);
   
    app.get("/post/:id/comment", getAllComments);
+   
+//    app.post("/comment", addComment);
   
    
-
-
-
-  
-  //error handling
-  //Generic error handling
   app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
     console.error(error.stack);
     response.status(500).json({
